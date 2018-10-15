@@ -64,9 +64,9 @@ public class ChefAndSemiPrime {
 
     //num <200 = a + b (a,b <200); a = x*y
     public static String isSumOfSemiPrimes2(List<Integer> testCases) {
-        List<Integer> set = primes((int) Math.sqrt(200));//set size only 6, this cost 1892
+        List<Integer> set = primes(100);
         HashSet<Integer> semiPrise = new HashSet<>();
-        for (Integer x : set) { //6*6 =36
+        for (Integer x : set) { //25*25
             for (Integer y : set) {
                 if (!Objects.equals(x, y)) {
                     semiPrise.add(x * y);
@@ -86,7 +86,7 @@ public class ChefAndSemiPrime {
 
         return "";
         //https://math.stackexchange.com/questions/422559/what-is-sum-limits-i-1n-sqrt-i
-        //O(n) = fixed at 1892 + 36 + 1296 + T (tests).
+        //O(n) = fixed at 671 + 25^2 + 25^2 ^4 + T (tests).
     }
 
     static List<Integer> primes(int max) {//max is exclude
