@@ -13,13 +13,11 @@ public class Qualify {
         for (int i = 1; i <= s.length; i++) { //n
             if (i <= limit) {
                 result.add(s[i - 1]);
-            }
-            else {
+            } else {
                 // Cater to case two or more scores have same scores at the limit
                 if (i > limit && tmp == s[i - 1]) {
                     result.add(s[i - 1]);
-                }
-                else {
+                } else {
                     break;
                 }
             }
@@ -28,13 +26,29 @@ public class Qualify {
         return result;
     }
 
+    static int findBestTeam2(int limit, Integer[] teams) {
+        Map<Integer, Long> map = Arrays.stream(teams).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        List<Integer> keys = map.keySet().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        if (keys.size() <= limit) {
+            return teams.length;
+        } else {
+            long score = keys.get(limit - 1);
+            return map.entrySet().stream().filter(e -> e.getKey() >= score)
+                    .map(Map.Entry::getValue).mapToInt(Long::intValue).sum();
+        }
+    }
+
     public static class CodeChefRound {
         public int limit;
         public Integer[] scores;
     }
 
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        //Reading input here
         java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
         try {
             //Line 1
@@ -43,7 +57,7 @@ public class Qualify {
             while (numOfTestcases > 0) {
                 CodeChefRound round = new CodeChefRound();
                 String line2 = r.readLine();
-                int numberOfTeams = Integer.valueOf(line2.split(" ")[0]);
+//                int numberOfTeams = Integer.valueOf(line2.split(" ")[0]);
                 int limit = Integer.valueOf(line2.split(" ")[1]);
 
                 String[] line3 = r.readLine().split(" ");
@@ -63,27 +77,6 @@ public class Qualify {
         }
 
 
-//        List<Integer> roundAList = findBestTeam2(a1, b1, s1);
-//        System.out.println(roundAList.size());
-
-//        int a2 = 6;
-//        int b2 = 1;
-//        Integer[] s2 = {3, 5, 2, 4 ,5};
-//
-//        List<Integer> roundBList = findBestTeam(b2, s2);
-//        System.out.println(roundBList.size());
     }
 
-    static int findBestTeam2(int limit, Integer[] teams) {
-        Map<Integer, Long> map = Arrays.stream(teams).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        List<Integer> keys = map.keySet().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-        if (keys.size() <= limit) {
-            return teams.length;
-        }
-        else {
-            long score = keys.get(limit-1);
-            return map.entrySet().stream().filter(e -> e.getKey() >= score)
-                    .map(Map.Entry::getValue).mapToInt(Long::intValue).sum();
-        }
-    }
 }

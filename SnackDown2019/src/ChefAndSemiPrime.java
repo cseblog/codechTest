@@ -62,7 +62,14 @@ public class ChefAndSemiPrime {
         }
     }
 
-    //num <200 = a + b (a,b <200); a = x*y
+
+    /**
+     * num <200 = a + b (a,b <200); a = x*y
+     * //https://math.stackexchange.com/questions/422559/what-is-sum-limits-i-1n-sqrt-i
+     * //O(n) = fixed at 671 + 25^2 + 25^2 ^4 + T (tests).
+     * @param testCases
+     * @return
+     */
     public static String isSumOfSemiPrimes2(List<Integer> testCases) {
         List<Integer> set = primes(100);
         HashSet<Integer> semiPrise = new HashSet<>();
@@ -73,6 +80,8 @@ public class ChefAndSemiPrime {
                 }
             }
         }
+
+
         HashSet<Integer> sumsOfSemiPrise = new HashSet<>();//sumsOfSemiPrise size only 97
         for (Integer x : semiPrise) { //36*36= 1892
             for (Integer y : semiPrise) {
@@ -85,8 +94,6 @@ public class ChefAndSemiPrime {
         }
 
         return "";
-        //https://math.stackexchange.com/questions/422559/what-is-sum-limits-i-1n-sqrt-i
-        //O(n) = fixed at 671 + 25^2 + 25^2 ^4 + T (tests).
     }
 
     static List<Integer> primes(int max) {//max is exclude
