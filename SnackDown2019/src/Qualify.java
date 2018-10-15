@@ -55,8 +55,8 @@ public class Qualify {
             }
 
             for (CodeChefRound tc : testcases) {
-                List<Integer> qualifiedTeams = findBestTeam(tc.limit, tc.scores);
-                System.out.println(qualifiedTeams.size());
+                int qualifiedTeams = findBestTeam2(tc.limit, tc.scores);
+                System.out.println(qualifiedTeams);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -81,7 +81,7 @@ public class Qualify {
             return teams.length;
         }
         else {
-            long score = map.get(keys.get(limit));
+            long score = keys.get(limit-1);
             return map.entrySet().stream().filter(e -> e.getKey() >= score)
                     .map(Map.Entry::getValue).mapToInt(Long::intValue).sum();
         }
