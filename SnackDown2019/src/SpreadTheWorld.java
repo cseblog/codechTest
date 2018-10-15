@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
 
-public class Main {
+public class SpreadTheWorld {
     public static void main(String[] args) {
         java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
         try {
