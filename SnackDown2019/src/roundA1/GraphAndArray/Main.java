@@ -1,3 +1,5 @@
+package roundA1.GraphAndArray;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -8,17 +10,17 @@ public class Main {
 
     private static int gcd(int a, int b) {
         int t;
-        while(b != 0){
+        while (b != 0) {
             t = a;
             a = b;
-            b = t%b;
+            b = t % b;
         }
         return a;
     }
 
-    private static Integer getCoprime(Integer k){
-        for(int i = 2; i < k; i++){
-            if(gcd(k, i) == 1){
+    private static Integer getCoprime(Integer k) {
+        for (int i = 2; i < k; i++) {
+            if (gcd(k, i) == 1) {
                 return i;
             }
         }
@@ -28,11 +30,11 @@ public class Main {
 
     // create a map for the array.
     public static boolean isCoprime(Integer a, Integer b) {
-        return gcd(a,b) == 1;
+        return gcd(a, b) == 1;
     }
 
 
-    public static Integer getNewCoprime(Integer a, Integer b){
+    public static Integer getNewCoprime(Integer a, Integer b) {
 
         return getCoprime(b);
     }
@@ -70,25 +72,25 @@ public class Main {
          */
         Integer[] numbers = data.numberList;
         for (int j = 0; j < numbers.length; j++) {
-          for (int k = j + 1; k < numbers.length; k++){
-              if(mapData.get(numbers[k]) == false){
-                  Integer a = numbers[j];
-                  Integer b = numbers[k];
-                  if(isCoprime(a, b)){
-                      mapData.put(a, true);
-                      mapData.put(b, true);
+            for (int k = j + 1; k < numbers.length; k++) {
+                if (mapData.get(numbers[k]) == false) {
+                    Integer a = numbers[j];
+                    Integer b = numbers[k];
+                    if (isCoprime(a, b)) {
+                        mapData.put(a, true);
+                        mapData.put(b, true);
 
-                  }
-              }
-          }
+                    }
+                }
+            }
         }
 
         //Starting from second number
-        for (int i = 1; i < numbers.length; i++){
+        for (int i = 1; i < numbers.length; i++) {
             Boolean status = mapData.get(numbers[i]);
-            if(status == false){
+            if (status == false) {
                 count++;
-                numbers[i] = getNewCoprime(numbers[i], numbers[i-1]);
+                numbers[i] = getNewCoprime(numbers[i], numbers[i - 1]);
             }
         }
 
@@ -99,7 +101,8 @@ public class Main {
     public static class Data {
         public int count;
         public Integer[] numberList;
-        public Data(int s, Integer[] list){
+
+        public Data(int s, Integer[] list) {
             count = s;
             numberList = list;
         }
@@ -131,10 +134,9 @@ public class Main {
             }
 
             //
-            for(Data d: tcs){
+            for (Data d : tcs) {
                 processing(d);
             }
-
 
 
         } catch (IOException e) {
