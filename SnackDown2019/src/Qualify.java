@@ -69,8 +69,10 @@ public class Qualify {
             }
 
             for (CodeChefRound tc : testcases) {
-                int qualifiedTeams = findBestTeam2(tc.limit, tc.scores);
-                System.out.println(qualifiedTeams);
+
+//                int qualifiedTeams = findBestTeam2(tc.limit, tc.scores);
+                List<Integer> qualifiedTeams = findBestTeam(tc.limit, tc.scores);
+                System.out.println(qualifiedTeams.size());
             }
         } catch (IOException e) {
             e.printStackTrace();
