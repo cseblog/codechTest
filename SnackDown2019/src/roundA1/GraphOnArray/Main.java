@@ -14,6 +14,25 @@ public class Main {
         return a;
     }
 
+    static int __gcd(int a, int b) {
+        // Everything divides 0
+        if (a == 0 || b == 0) {
+            return 0;
+        }
+
+        // base case
+        if (a == b) {
+            return a;
+        }
+
+        // a is greater
+        if (a > b) {
+            return __gcd(a - b, b);
+        }
+
+        return __gcd(a, b - a);
+    }
+
     static List<Integer> printDivisors(int n)
     {
         List<Integer> listOfDivisors= new ArrayList<>();
@@ -38,7 +57,6 @@ public class Main {
     }
 
     /**
-     * Build a map of coprimes
      * Ex:
      * tc1
      *     2 -> [5, 7]
@@ -61,29 +79,29 @@ public class Main {
     public static void processing(int size, Integer[] numbers) {
         int count = 0;
         StringBuilder tmp = new StringBuilder();
-        String tmp2 = "";
 
 
         Integer[] primes = {29, 31, 37, 41, 43, 47};
         int i = 0;
 
-        for (int j = 0; j < size; j++) {
+        for (int j = 0; j < numbers.length; j++) {
             boolean isCoPrime = false;
-            for (int k = 0; k < size; k++){
+            for (int k = 0; k < numbers.length; k++){
                 if(j == k)
                     continue;
                 Integer a = numbers[j];
                 Integer b = numbers[k];
-                List<Integer> l1 = printDivisors(a);
-                List<Integer> l2 = printDivisors(b);
-                l1.retainAll(l2);
-                if(l1.size() == 1 && l1.get(0) == 1){
-                    isCoPrime = true;
-                }
-//                if(gcd(a, b) == 1){
-//                    isPrime = true;
-//                    break;
+//                List<Integer> l1 = printDivisors(a);
+//                List<Integer> l2 = printDivisors(b);
+//                l1.retainAll(l2);
+//                if(l1.size() == 1 && l1.get(0) == 1){
+//                    isCoPrime = true;
 //                }
+
+                if(gcd(a, b) == 1){
+                    isCoPrime = true;
+                    break;
+                }
             }
 
             //
@@ -92,17 +110,18 @@ public class Main {
                 if( i >= 5){
                     i = 0;
                 }
-                numbers[j] = 47;
+                numbers[j] = primes[i];
+                i++;
             }
 
             if(j > 0)
-                tmp2 = tmp2 + " ";
-            tmp2 = tmp2 + numbers[j];
+                tmp.append(" ");
+            tmp.append(numbers[j]);
         }
 
 
         System.out.println(count);
-        System.out.println(tmp2);
+        System.out.println(tmp);
 
     }
 
@@ -120,7 +139,6 @@ public class Main {
                 processing(size, data);
                 numOfTestcases--;
             }
-
 
         } catch (IOException e) {
             e.printStackTrace();
