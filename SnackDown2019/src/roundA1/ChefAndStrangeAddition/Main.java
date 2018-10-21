@@ -53,11 +53,11 @@ public class Main {
         i = i + (i >>> 16);
         return i & 0x3f;
 
-//        int count = 0;
+//        int size = 0;
 //        while (n > 0) {
-//            count += n & 1;
+//            size += n & 1;
 //            n >>= 1;
 //        }
-//        return count;
+//        return size;
     }
 }

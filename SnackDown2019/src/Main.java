@@ -40,12 +40,12 @@ public class Main {
     public static void processing(Data data) {
         Map<Integer, Boolean> mapData = new HashMap<>();
         int count = 0;
-
+        StringBuilder tmp = new StringBuilder();
 
         // build a map with key is numbers of input
-        for (int i = 0; i < data.numberList.length; i++) {
-            mapData.put(data.numberList[i], false);
-        }
+//        for (int i = 0; i < data.list.length; i++) {
+//            mapData.put(data.list[i], false);
+//        }
 
         /**
          * Build a map of coprimes
@@ -69,31 +69,41 @@ public class Main {
          *
          */
         Integer[] numbers = data.numberList;
-        for (int j = 0; j < numbers.length; j++) {
-          for (int k = j + 1; k < numbers.length; k++){
-              if(mapData.get(numbers[k]) == false){
+        tmp.append(numbers[0]);
+        for (int j = 1; j < numbers.length; j++) {
+            boolean isPrime = false;
+          for (int k = 0; k < numbers.length; k++){
                   Integer a = numbers[j];
                   Integer b = numbers[k];
-                  if(isCoprime(a, b)){
-                      mapData.put(a, true);
-                      mapData.put(b, true);
-
+                  if(gcd(a, b) == 1){
+                      isPrime = true;
                   }
-              }
+
           }
+            if(!isPrime){
+                count++;
+                numbers[j] = getNewCoprime(numbers[j], numbers[j-1]);
+            }
+
+            tmp.append(" ");
+            tmp.append(numbers[j]);
         }
 
         //Starting from second number
-        for (int i = 1; i < numbers.length; i++){
-            Boolean status = mapData.get(numbers[i]);
-            if(status == false){
-                count++;
-                numbers[i] = getNewCoprime(numbers[i], numbers[i-1]);
-            }
-        }
+//
+//        for (int i = 1; i < numbers.length; i++){
+//            Boolean status = mapData.get(numbers[i]);
+//            if(status == false){
+//                size++;
+//                numbers[i] = getNewCoprime(numbers[i], numbers[i-1]);
+//            }
+//            tmp.append(" ");
+//            tmp.append(numbers[i]);
+//        }
 
         System.out.println(count);
-        printArray(numbers);
+        System.out.println(tmp.toString());
+
     }
 
     public static class Data {
@@ -105,14 +115,6 @@ public class Main {
         }
     }
 
-    private static void printArray(Integer[] anArray) {
-        for (int i = 0; i < anArray.length; i++) {
-            if (i > 0) {
-                System.out.print(" ");
-            }
-            System.out.print(anArray[i]);
-        }
-    }
 
     public static void main(String[] args) {
         java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
