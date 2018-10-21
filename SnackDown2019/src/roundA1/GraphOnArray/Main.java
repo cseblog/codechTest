@@ -68,7 +68,7 @@ public class Main {
         int i = 0;
 
         for (int j = 0; j < size; j++) {
-            boolean isPrime = false;
+            boolean isCoPrime = false;
             for (int k = 0; k < size; k++){
                 if(j == k)
                     continue;
@@ -78,7 +78,7 @@ public class Main {
                 List<Integer> l2 = printDivisors(b);
                 l1.retainAll(l2);
                 if(l1.size() == 1 && l1.get(0) == 1){
-                    isPrime = true;
+                    isCoPrime = true;
                 }
 //                if(gcd(a, b) == 1){
 //                    isPrime = true;
@@ -87,7 +87,7 @@ public class Main {
             }
 
             //
-            if(!isPrime){
+            if(!isCoPrime){
                 count++;
                 if( i >= 5){
                     i = 0;
