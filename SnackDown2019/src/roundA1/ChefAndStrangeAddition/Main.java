@@ -6,25 +6,25 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-//        java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
-//        try {
-//            Integer testCases = Integer.valueOf(r.readLine());
-//            ArrayList<String[]> tests = new ArrayList<>(testCases);
-//            for (int i = 0; i < testCases; i++) {
-//                String[] test = r.readLine().split(" ");
-//                tests.add(test);
-//            }
-//            for (String[] test : tests) {
-//                System.out.println(calculate(test));
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        long t = System.currentTimeMillis();
-        int c = (int) Math.pow(10, 9);
-        int a = (int) Math.pow(10, 5) + 1234;
-        System.out.println(calculate(new String[]{"" + a, "" + (c - a), "" + c}));
-        System.out.println(System.currentTimeMillis() - t);
+        java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
+        try {
+            Integer testCases = Integer.valueOf(r.readLine());
+            ArrayList<String[]> tests = new ArrayList<>(testCases);
+            for (int i = 0; i < testCases; i++) {
+                String[] test = r.readLine().split(" ");
+                tests.add(test);
+            }
+            for (String[] test : tests) {
+                System.out.println(calculate(test));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        long t = System.currentTimeMillis();
+//        int c = (int) Math.pow(10, 9);
+//        int a = (int) Math.pow(10, 5) + 1234;
+//        System.out.println(calculate(new String[]{"2", "3", "5"}));
+//        System.out.println(System.currentTimeMillis() - t);
     }
 
     private static long calculate(String[] test) {
@@ -34,14 +34,15 @@ public class Main {
         int c = Integer.valueOf(test[2]);
         int aCount = countSetBits(a);
         int bCount = countSetBits(b);
-        for (int ai = 0; ai <= c / 2; ai++) {
+
+        for (int ai = 0; ai <= c; ai++) {
             int bi = c - ai;
             if (countSetBits(ai) == aCount && countSetBits(bi) == bCount) {
                 count++;
             }
         }
 
-        return count * 2;
+        return count;
     }
 
     static int countSetBits(int i) {
