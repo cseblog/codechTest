@@ -60,9 +60,9 @@ public class Main {
     }
 
     private static void calculate(Test test) {
-        Map<Integer, Integer> map = getMap(test.list);
+        int[] map = getMap(test.list, test.row, test.col);
         for (int i = 0; i < test.row + test.col - 2; i++) {
-            System.out.print(map.getOrDefault(i + 1, 0) / 2 + (i < test.row + test.col - 3 ? " " : ""));
+            System.out.print(map[i + 1] / 2 + (i < test.row + test.col - 3 ? " " : ""));
         }
     }
 
@@ -74,14 +74,14 @@ public class Main {
         return count / 2;
     }
 
-    static Map<Integer, Integer> getMap(List<Pair> list) {
-        Map<Integer, Integer> map = new HashMap<>();
+    static int[] getMap(List<Pair> list, int row, int col) {
+        int[] map = new int[row + col];
+//        Map<Integer, Integer> map = new HashMap<>();
         for (Pair source : list) {
             for (Pair des : list) {
                 if (source != des) {
                     int distance = source.distance(des);
-                    Integer count = map.getOrDefault(distance, 0);
-                    map.put(distance, count + 1);
+                    map[distance] += 1;
                 }
             }
         }
