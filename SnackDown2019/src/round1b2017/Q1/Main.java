@@ -1,4 +1,4 @@
-package round1b2017;
+package round1b2017.Q1;
 
 import java.io.IOException;
 import java.util.ArrayList;
