@@ -1,4 +1,4 @@
-package round1b2017.Q3;
+package round1b2017.Q2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,6 @@ public class Main {
             numberOfTc--;
         }
         for (Test test : tcs) {
-
             if (test.min == test.max) {
                 System.out.println(0);
             }
