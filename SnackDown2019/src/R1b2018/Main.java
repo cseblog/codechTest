@@ -44,20 +44,20 @@ public class Main {
     private static int calculate(Test test) {
         List<Integer> list = Arrays.stream(test.a).boxed().sorted().collect(Collectors.toList());
         int time = Integer.MAX_VALUE;
-        int index = test.K;
+        int lastOrder = 1;
         for (int i = 1; i <= test.K; i++) {
-            int order = findOrder(i, list);
+            int order = findOrder(lastOrder, i, list);
+            lastOrder = order;
             int current = (test.M + order) * test.L - i;
             if (current < time) {
                 time = current;
-                index = i;
             }
         }
-        return index;
+        return time;
     }
 
-    private static int findOrder(int i, List<Integer> list) {
-        for (int j = 0; j < list.size(); j++) {
+    private static int findOrder(int lastOrder, int i, List<Integer> list) {
+        for (int j = lastOrder - 1; j < list.size(); j++) {
             if (i <= list.get(j)) {
                 return j + 1;
             }
